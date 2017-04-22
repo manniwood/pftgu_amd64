@@ -8,8 +8,8 @@
 #          after running the program
 
 # VARIABLES:
-# %eax holds the system call number
-# %ebx holds the return status
+# %rax holds the system call number
+# %rdi holds the return status
 
 .section .data
 
