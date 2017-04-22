@@ -28,7 +28,8 @@ movq $0, %rdi
 syscall
 
 # This is an excellent resource on linux x86 syscall conventions:
-# http://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-x86-64
+# http://stackoverflow.com/questions/2535989/
+#   what-are-the-calling-conventions-for-unix-linux-system-calls-on-x86-64
 # But here it is in a nutshell:
 #
 # User-level applications use as integer registers for passing the
@@ -37,7 +38,8 @@ syscall
 # A system-call is done via the syscall instruction.
 # The kernel destroys registers %rcx and %r11.
 # The number of the syscall has to be passed in register %rax.
-# System-calls are limited to six arguments; no argument is passed directly on the stack.
+# System-calls are limited to six arguments;
+#   no argument is passed directly on the stack.
 # Returning from the syscall, register %rax contains the result of the system-call.
 # A value in the range between -4095 and -1 indicates an error, it is -errno.
 # Only values of class INTEGER or class MEMORY are passed to the kernel.
