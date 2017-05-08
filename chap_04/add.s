@@ -1,5 +1,5 @@
 # PURPOSE: Program to illustrate how functions work.
-#          Computes the value of 2^3 + 5^2
+#          Just adds 2 and 3
 
 # Everything in the main program is stored in registers,
 # so the data section doesn't have anything.
