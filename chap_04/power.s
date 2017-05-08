@@ -18,8 +18,10 @@ _start:
   movq $5, %rsi         # second argument
   call power            # call the power function
 
-  popq %rdi             # pop our first answer into %rdi, the first arg to the exit syscall
-  addq %rax, %rdi       # add our second answer, still in %rax, to our second answer (now in %rdi)
+  popq %rdi             # pop our first answer into %rdi, the first arg to the exit
+                        # syscall
+  addq %rax, %rdi       # add our second answer, still in %rax, to our second answer
+                        # (now in %rdi)
 
   movq $60, %rax        # Now that %rax is free, put the system call for exit in %rax
   syscall               # Do the system call
@@ -28,12 +30,14 @@ _start:
 power:
   pushq %rbp            # save the old base pointer
   movq %rsp, %rbp       # make the stack pointer the base pointer
-  movq %rdi, %rax       # Let's use %rax as our ongoing answer, seeing as the return value needs to end up there
+  movq %rdi, %rax       # Let's use %rax as our ongoing answer, seeing as the return
+                        # value needs to end up there
 
 power_loop_start:
   cmpq $1, %rsi         # if the power is 1, we are done
   je end_power
-  imulq %rdi, %rax      # multiply our base (first arg, still in %rdi) by our ongoing answer
+  imulq %rdi, %rax      # multiply our base (first arg, still in %rdi) by our ongoing
+                        # answer
   decq %rsi             # subtract 1 from our power (still in %rsi)
   jmp power_loop_start
 end_power:
