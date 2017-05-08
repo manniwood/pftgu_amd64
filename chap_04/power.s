@@ -9,29 +9,40 @@
 .section .text
 .globl _start
 _start:
-  movq $2, %rdi          # first argument
-  movq $3, %rsi          # second argument
-  call add       # call the add function
+  movq $2, %rdi         # first argument
+  movq $3, %rsi         # second argument
+  call power            # call the power function
+  pushq %rax            # push our first answer onto the stack
 
-  movq %rax, %rdi       # Our answer is in %rax, but we want to print it as the exit status,
-                        # so put it into %rdi, the first arg for system calls.
+  movq $2, %rdi         # first argument
+  movq $5, %rsi         # second argument
+  call power            # call the power function
+
+  popq %rdi             # pop our first answer into %rdi, the first arg to the exit syscall
+  addq %rax, %rdi       # add our second answer, still in %rax, to our second answer (now in %rdi)
 
   movq $60, %rax        # Now that %rax is free, put the system call for exit in %rax
-  syscall               # Do the systen call
+  syscall               # Do the system call
 
-.type add, @function
-add:
+.type power, @function
+power:
   pushq %rbp            # save the old base pointer
   movq %rsp, %rbp       # make the stack pointer the base pointer
-  
-  movq %rdi, -8(%rbp)   # put first arg on stack (local variable)
-  movq %rsi, -16(%rbp)  # put second arg on stack (local variable)
-  movq -8(%rbp), %rdx   # put first local variable in %rdx in preparation for add
-  movq -16(%rbp), %rax  # put second local variable in %rax, the "return value" register
-  addq %rdx, %rax       # add %rdx and %rax, putting the result in %rax, our return register
-  
+  movq %rdi, %rax       # Let's use %rax as our ongoing answer, seeing as the return value needs to end up there
+
+power_loop_start:
+  cmpq $1, %rsi         # if the power is 1, we are done
+  je end_power
+  imulq %rdi, %rax      # multiply our base (first arg, still in %rdi) by our ongoing answer
+  decq %rsi             # subtract 1 from our power (still in %rsi)
+  jmp power_loop_start
+end_power:
+                        # Remember, our answer is already in %rax
   popq %rbp             # restore base pointer
   ret
+
+# registar first 6 args: rdi, rsi, rdx, rcx, r8, r9
+# register return value: rax
 
 # http://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64/
 # google search "linux amd64 c calling convention"
