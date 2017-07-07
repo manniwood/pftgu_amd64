@@ -1,13 +1,18 @@
-# PURPOSE: Finds the maximum of a set of numbers
-
-# VARIABLES: Here's how we are using the various registers:
-# %rdi - Holds the index of the data item being examined
-# %rbx - Largest data item found
-# %rax - Current data item
+# maximum.s
+# From pp 32 and 33 of Programming from the Ground Up; 64 bit version
+#
+# Compile and link like so:
+# $ as maximum.s -o maximum.o
+# $ ld maximum.o -o maximum
+#
+# Exits with a status code that holds the largest number from an
+# array of numbers held in the data section of the ELF file.
 
 .section .data
 
 data_items:
+# .quad is a compiler directive, saying there will be a list
+# of quad (64 bit) words
 .quad 3,67,34,222,45,75,54,34,44,33,22,11,66,0
 
 .section .text
@@ -28,10 +33,12 @@ movq %rax, %rbx
 start_loop:
   # Does %rax hold 0? Because, of our data_items, we are using 0 as
   # a sentry value to mean stop. cmpq has a side effect: it sets status
-  # flags in the EFLAGS register, according to the results of the comparison.
+  # flags in the RFLAGS register, according to the results of the comparison.
+  # Note that RFLAGS starts with an R just like all the other 64-bit registers,
+  # but back in 32-bit days, it was EFLAGS, and before that, just FLAGS.
   cmpq $0, %rax
 
-  # If the EFLAGS register says the previous comparison was equal,
+  # If the RFLAGS register says the previous comparison was equal,
   # we jump to loop_exit. (So in this case, we exit if we have read
   # the 0 sentry value in data_items.)
   je loop_exit
@@ -45,7 +52,7 @@ start_loop:
   movq data_items(,%rdi,8), %rax
 
   # Compare the contents of %rbx (our current largest value) with
-  # the value in %rax and set appropriate status flags in the EFLAGS register.
+  # the value in %rax and set appropriate status flags in the RFLAGS register.
   cmpq %rbx, %rax
 
   # Jump to start_loop if %rax was less than or equal to %rbx
@@ -67,5 +74,3 @@ loop_exit:
   movq %rbx, %rdi
   movq $60, %rax
   syscall
-
-
