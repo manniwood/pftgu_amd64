@@ -1,0 +1,4 @@
+*.o
+*.swp
+args
+toupper
