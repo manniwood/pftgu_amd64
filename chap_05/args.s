@@ -31,8 +31,8 @@ _start:
 .L_argv_loop:
   movq 8(%rsp, %r13, 8), %rdi
   call print_arg
-  inc %r13
-  cmp %r12, %r13
+  incq %r13
+  cmpq %r12, %r13
   jl .L_argv_loop
 
   movq $60, %rax
@@ -64,11 +64,14 @@ print_arg:
   # r12 and r13, which we are using in _start
   movq %rdi, %r10
 .L_find_null:
+  # NOTE the use of cmpb; the b in cmpb means byte;
+  # we are comparing a byte, that is, only the first
+  # 8 bits of the 64 bits available in the %r10 register.
   cmpb $0, (%r10)
   je .L_end_find_null
   # we have not yet found '\0', so increment the address to
   # point to the next byte
-  inc %r10
+  incq %r10
   jmp .L_find_null
 .L_end_find_null:
   # r10 points to '\0', so r10-rdi is the length
