@@ -20,12 +20,20 @@ newline:
 .section .text
 .globl _start
 _start:
-  # make the base pointer point at the stack pointer
-  movq %rsp, %rbp
+
+  # put the number of arguments in $r12; that is, argc is in %r12
+  movq (%rsp), %r12
 
   # put the address of argv[0] into the first argument of print_arg
-  movq 8(%rbp), %rdi
+  # movq 8(%rsp), %rdi
+  # put the address of an argument into the first argument of print_arg
+  movq $0, %r13
+.L_argv_loop:
+  movq 8(%rsp, %r13, 8), %rdi
   call print_arg
+  inc %r13
+  cmp %r12, %r13
+  jl .L_argv_loop
 
   movq $60, %rax
   movq $0, %rdi
@@ -50,26 +58,28 @@ print_arg:
   # from the start address.
 
   # %rdi still has our first arg, which is the address
-  # of the first char of the arg. Copy the address into r12,
+  # of the first char of the arg. Copy the address into r10,
   # which we will advance until we find '\0'
-  movq %rdi, %r12
-find_null:
-  cmpb $0, (%r12)
-  je end_find_null
+  # NOTE that we pick r10 because it does not conflict with
+  # r12 and r13, which we are using in _start
+  movq %rdi, %r10
+.L_find_null:
+  cmpb $0, (%r10)
+  je .L_end_find_null
   # we have not yet found '\0', so increment the address to
   # point to the next byte
-  inc %r12
-  jmp find_null
-end_find_null:
-  # r12 points to '\0', so r12-rdi is the length
-  # store the length in %r12
-  sub %rdi, %r12
+  inc %r10
+  jmp .L_find_null
+.L_end_find_null:
+  # r10 points to '\0', so r10-rdi is the length
+  # store the length in %r10
+  sub %rdi, %r10
 
   # print the arg
   movq $1, %rax
   movq $1, %rdi
   movq -8(%rbp), %rsi
-  movq %r12, %rdx
+  movq %r10, %rdx
   syscall
 
   # print a newline
