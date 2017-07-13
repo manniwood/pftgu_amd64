@@ -98,18 +98,18 @@ _start:
   movq %rax, ST_FILE_DESCRIPTOR(%rbp)
 
   # Write the first record
-  movq ST_FILE_DESCRIPTOR(%rbp), %rax
-  movq $record1, %rdi
+  movq ST_FILE_DESCRIPTOR(%rbp), %rdi
+  movq $record1, %rsi
   call write_record
 
   # Write the second record
-  movq ST_FILE_DESCRIPTOR(%rbp), %rax
-  movq $record2, %rdi
+  movq ST_FILE_DESCRIPTOR(%rbp), %rdi
+  movq $record2, %rsi
   call write_record
 
   # Write the third record
-  movq ST_FILE_DESCRIPTOR(%rbp), %rax
-  movq $record3, %rdi
+  movq ST_FILE_DESCRIPTOR(%rbp), %rdi
+  movq $record3, %rsi
   call write_record
 
   # Close the file descriptor
