@@ -17,15 +17,15 @@ write_record:
   # second arg, write buffer, is in %rsi
 
   movq $SYS_WRITE, %rax
-  # First arg to our function is also the first arg to read syscall
+  # First arg to our function is also the first arg to write syscall
   # movq %rdi, %rdi
-  # Second arg to our function is also the second arg to read syscall
+  # Second arg to our function is also the second arg to write syscall
   # movq %rsi, %rsi
   # Third arg is from record-def.s
   movq $RECORD_SIZE, %rdx
   syscall
 
-  # now the number of bytes read is waiting in %rax,
+  # now the number of bytes written is waiting in %rax,
   # which also happens to be the return register for
   # function calls
 
