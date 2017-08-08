@@ -85,12 +85,12 @@ _start:
   # open the file
   # put open syscall number in correct register
   movq $SYS_OPEN, %rax
-  # The input filename is the first command line arg;
+  # The output filename is the first command line arg;
   # put it in the first syscall arg slot
   movq $file_name, %rdi
-  # read-only flag goes into flags argument
+  # read/write-only flag goes into flags argument
   movq $O_CREAT_WRONLY_TRUNC, %rsi
-  # 0444 goes into mode argument
+  # 0666 goes into mode argument
   movq $0666, %rdx
   syscall
 
