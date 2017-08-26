@@ -10,7 +10,7 @@
 # standard file descriptors
 .equ STDIN, 0
 .equ STDOUT, 1
-.equ STERR, 2
+.equ STDERR, 2
 
 .equ END_OF_FILE, 0
 
