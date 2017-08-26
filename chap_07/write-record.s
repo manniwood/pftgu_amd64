@@ -32,3 +32,6 @@ write_record:
   popq %rbp
   ret
 
+#  C call: RDI, RSI, RDX, RCX, R8, R9
+# Syscall: RDI, RSI, RDX, R10, R8, R9
+
