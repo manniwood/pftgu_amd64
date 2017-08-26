@@ -1,0 +1,5 @@
+*.dat
+*.o
+*.swp
+write-records
+add-year
