@@ -54,7 +54,7 @@
 # and written to the output file. Apparently, exceeding 16,000
 # is a bad idea for various reasons.
 .equ BUFFER_SIZE, 500
-.lcomm BUFFER_DATA, BUFFER_SIZE
+.comm BUFFER_DATA, BUFFER_SIZE
 
 .section .text
 
