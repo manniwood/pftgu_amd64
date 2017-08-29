@@ -77,9 +77,6 @@ carry_on:
   # so we can prove to ourselves that we successfully
   # moved the system break, stored a value there, and
   # were able to read it back.
-  # (TODO: use the difference between the new and
-  # old system break as the return value so you can
-  # see how much Linux actually moved the system break.)
   movq $SYS_EXIT, %rax
   movq (%r11), %rdi
   syscall
