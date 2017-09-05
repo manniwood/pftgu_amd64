@@ -25,6 +25,7 @@ _start:
   
   # Find out where the system break is...
   movq $SYS_BRK, %rax
+
   # ... by asking for the system break to advance by 0 bytes
   movq $0, %rdi
   syscall
@@ -80,3 +81,10 @@ carry_on:
   movq $SYS_EXIT, %rax
   movq (%r11), %rdi
   syscall
+
+# C call: RDI, RSI, RDX, RCX, R8, R9
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX

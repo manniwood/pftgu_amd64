@@ -10,7 +10,9 @@ file_name:
 .ascii "test.dat\0"
 
 .section .bss
-.comm record_buffer, RECORD_SIZE
+# .comm record_buffer, RECORD_SIZE
+record_buffer_ptr:
+.quad 0
 
 .section .text
 .globl _start
@@ -24,6 +26,14 @@ _start:
 
   # Allocate space on the stack to hold the file descriptors
   subq $16, %rsp
+
+  # Initialize the memory manager
+  call allocate_init
+
+  # Allocate enough memory to hold a record
+  movq $RECORD_SIZE, %rdi
+  call allocate
+  movq %rax, record_buffer_ptr
 
   # Open the file
   movq $SYS_OPEN, %rax
@@ -45,7 +55,7 @@ _start:
 
 record_read_loop:
   movq ST_INPUT_DESCRIPTOR(%rbp), %rdi
-  movq $record_buffer, %rsi
+  movq $record_buffer_ptr, %rsi
   call read_record
 
   # Returns the number of bytes read in %rax
@@ -57,15 +67,19 @@ record_read_loop:
 
   # Otherwise, printout the first name,
   # after determining its size.
-  movq $RECORD_FIRSTNAME + record_buffer, %rdi
+  ## movq $RECORD_FIRSTNAME + record_buffer, %rdi
+  movq record_buffer_ptr, %rdi
+  addq $RECORD_FIRSTNAME, %rdi
   call count_chars
 
-  # The length is returned in %rax, so put it in the fourth arg
+  # The length is returned in %rax, so put it in the third arg
   # of a write syscall
   movq %rax, %rdx
   movq ST_OUTPUT_DESCRIPTOR(%rbp), %rdi
   movq $SYS_WRITE, %rax
-  movq $RECORD_FIRSTNAME + record_buffer, %rsi
+  ## movq $RECORD_FIRSTNAME + record_buffer, %rsi
+  movq record_buffer_ptr, %rsi
+  addq $RECORD_FIRSTNAME, %rsi
   syscall
 
   movq ST_OUTPUT_DESCRIPTOR(%rbp), %rdi
@@ -74,13 +88,14 @@ record_read_loop:
   jmp record_read_loop
 
 finished_reading:
+
+  # Deallocate the memory we used
+  movq record_buffer_ptr, %rdi
+  call deallocate
+
   movq $SYS_EXIT, %rax
   movq $0, %rdi
   syscall
 
-# C call: RDI, RSI, RDX, RCX, R8, R9
-#
-# Syscall:
-#   syscall number in RAX
-#   args: RDI, RSI, RDX, R10, R8, R9
-#   syscall return value in RAX
+#  C call: RDI, RSI, RDX, RCX, R8, R9
+# Syscall: RDI, RSI, RDX, R10, R8, R9
