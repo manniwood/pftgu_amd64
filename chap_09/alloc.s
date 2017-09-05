@@ -80,7 +80,7 @@ allocate:
   movq heap_begin, %rax
 
   # rbx will hold the current system break
-  movq current_break, %rax
+  movq current_break, %rbx
 
 # Iterate through each memory region
 alloc_loop_begin:
