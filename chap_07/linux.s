@@ -1,3 +1,8 @@
+#
+# linux.s
+#
+# From pp 96,97 of Programming from the Ground Up; 64 bit version
+
 # system call numbers
 .equ SYS_READ, 0
 .equ SYS_WRITE, 1

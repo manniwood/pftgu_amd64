@@ -1,10 +1,10 @@
+#
 # write-records.s
+#
 # From pp 100-103 of Programming from the Ground Up; 64 bit version
-# 
-# compile like so:
-# $ as write-record.s -o write-record.o
-# $ as write-records.s -o write-records.o
-# $ ld write-record.o write-records.o -o write-records
+#
+# Build with build_write_records.sh, in this same directory.
+#
 
 .include "linux.s"
 .include "record-def.s"
@@ -121,5 +121,16 @@ _start:
   movq $SYS_EXIT, %rax
   movq $0, %rdi
   syscall
-  
 
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11

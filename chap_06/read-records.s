@@ -63,7 +63,7 @@ record_read_loop:
   movq $RECORD_FIRSTNAME + record_buffer, %rdi
   call count_chars
 
-  # The length is returned in %rax, so put it in the fourth arg
+  # The length is returned in %rax, so put it in the third arg
   # of a write syscall
   movq %rax, %rdx
   movq ST_OUTPUT_DESCRIPTOR(%rbp), %rdi

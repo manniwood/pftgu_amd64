@@ -4,7 +4,6 @@
 # From pp 111 - 113 of Programming from the Ground Up; 64 bit version
 #
 # Build with build_add_year.sh, in this same directory.
-#
 
 .include "linux.s"
 .include "record-def.s"

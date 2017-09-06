@@ -1,3 +1,8 @@
+#
+# record-def.s
+#
+# From p 96 of Programming from the Ground Up; 64 bit version
+
 .equ RECORD_FIRSTNAME, 0
 .equ RECORD_LASTNAME, 40
 .equ RECORD_ADDRESS, 80
