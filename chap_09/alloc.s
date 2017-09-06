@@ -1,3 +1,8 @@
+#
+# alloc.s
+#
+# From pp 157-165 of Programming from the Ground Up; 64 bit version
+
 .section .data
 
 ### GLOBAL VARIABLES ###
@@ -218,10 +223,15 @@ deallocate:
   # Return
   ret
 
-# C call: RDI, RSI, RDX, RCX, R8, R9
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
 #
 # Syscall:
 #   syscall number in RAX
 #   args: RDI, RSI, RDX, R10, R8, R9
 #   syscall return value in RAX
-
+#   destroyed registers: RCX and R11

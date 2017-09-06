@@ -1,6 +1,7 @@
+#
 # count-chars.s
+#
 # From pp 105-106 of Programming from the Ground Up; 64 bit version
-# 
 
 .section .text
 .type count_chars, @function
@@ -35,5 +36,15 @@ count_loop_end:
   popq %rbp
   ret
 
-#  C call: RDI, RSI, RDX, RCX, R8, R9
-# Syscall: RDI, RSI, RDX, R10, R8, R9
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11

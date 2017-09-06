@@ -1,3 +1,9 @@
+#
+# heap.s
+#
+# Not from the book; just playing with getting and moving
+# the sysem break.
+
 .section .data
 .equ SYS_EXIT, 60
 .equ SYS_BRK, 12
@@ -82,9 +88,16 @@ carry_on:
   movq (%r11), %rdi
   syscall
 
-# C call: RDI, RSI, RDX, RCX, R8, R9
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
 #
 # Syscall:
 #   syscall number in RAX
 #   args: RDI, RSI, RDX, R10, R8, R9
 #   syscall return value in RAX
+#   destroyed registers: RCX and R11
+

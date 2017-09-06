@@ -1,5 +1,3 @@
 *.o
-heap
-heap2
 read-records
 test.dat
