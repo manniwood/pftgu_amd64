@@ -1,18 +1,12 @@
+#
 # toupper.s
+#
 # From pp 81 - 87 of Programming from the Ground Up; 64 bit version
-#
-# Compile and link like so:
-# $ as toupper.s -o toupper.o
-# $ ld toupper.o -o toupper
-#
-# By this point, the gdb debugger comes in handy.
-# Compile and link for a debugger like so:
-# $ as --gstabs toupper.s -o toupper.o
-# $ ld          toupper.o -o toupper
 #
 # Also, you will need to run this with two arguments,
 # so when you need to run it using gdb, do this to
 # make the arguments work:
+#
 # $ gdb --args ./toupper test_file.txt new_file.txt
 #
 # Intended to show file management through linux system calls
@@ -20,7 +14,6 @@
 # in 64 bit linux.
 #
 # Also introduces us to the .equ compiler directive
-
 
 .section .data
 # system call numbers
@@ -244,3 +237,16 @@ end_convert_loop:
   movq %rbp, %rsp
   popq %rbp
   ret
+
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11
