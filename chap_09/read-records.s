@@ -55,7 +55,7 @@ _start:
 
 record_read_loop:
   movq ST_INPUT_DESCRIPTOR(%rbp), %rdi
-  movq $record_buffer_ptr, %rsi
+  movq record_buffer_ptr, %rsi
   call read_record
 
   # Returns the number of bytes read in %rax
