@@ -1,4 +1,6 @@
+#
 # add.s
+#
 # Not from Programming from the Ground up; just exploring
 # simple function call that has local variables. Illustrates
 # how a 'leaf function' (a function that calls no other functions)
@@ -6,10 +8,6 @@
 # on the stack for local variables; instead, with the 64 bit
 # calling convention, a certain amount of memory past the stack
 # pointer is automatically available for use by local variables.
-
-# Compile and link like so:
-# $ as add.s -o add.o
-# $ ld add.o -o add
 
 # Just adds 2 and 3 and puts the result in the exit code.
 

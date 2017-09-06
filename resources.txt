@@ -1,0 +1,17 @@
+
+Good resource on amd64 Linux calling convention, stack frame layout,
+and explanation of the Red Zone, and how leaf functions don't even
+have to move the stack pointer to be allowed to push local variables
+onto the stack:
+
+http://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64/
+
+This is really good too:
+
+http://nickdesaulniers.github.io/blog/2014/04/18/lets-write-some-x86-64/
+
+Also good:
+
+http://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-x86-64
+
+
