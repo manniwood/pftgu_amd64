@@ -1,3 +1,8 @@
+#
+# linux.s
+#
+# From pp 96,97 of Programming from the Ground Up; 64 bit version
+
 # system call numbers
 .equ SYS_READ, 0
 .equ SYS_WRITE, 1
@@ -14,5 +19,3 @@
 
 .equ END_OF_FILE, 0
 
-#  C call: RDI, RSI, RDX, RCX, R8, R9
-# Syscall: RDI, RSI, RDX, R10, R8, R9

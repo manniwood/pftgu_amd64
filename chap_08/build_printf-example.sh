@@ -4,7 +4,7 @@ set -u
 set -e
 set -o pipefail
 
-as printf-example.s -o printf-example.o
+as --gstabs printf-example.s -o printf-example.o
 ld --dynamic-linker /lib64/ld-linux-x86-64.so.2 -o printf-example printf-example.o -lc
 # the above ld command inspired by:
 # http://stackoverflow.com/questions/15466232/linking-linux-x86-64-assembly-hello-world-program-with-ld-fails
