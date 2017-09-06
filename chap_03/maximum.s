@@ -1,9 +1,9 @@
+#
 # maximum.s
+#
 # From pp 32 and 33 of Programming from the Ground Up; 64 bit version
 #
-# Compile and link like so:
-# $ as maximum.s -o maximum.o
-# $ ld maximum.o -o maximum
+# Build with build_maximum.sh, in this same directory.
 #
 # Exits with a status code that holds the largest number from an
 # array of numbers held in the data section of the ELF file.
@@ -74,3 +74,16 @@ loop_exit:
   movq %rbx, %rdi
   movq $60, %rax
   syscall
+
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11

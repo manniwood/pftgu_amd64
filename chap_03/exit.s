@@ -1,9 +1,9 @@
+#
 # exit.s
+#
 # From page 20 of Programming from the Ground Up; 64 bit version
 #
-# Compile and link like so:
-# $ as exit.s -o exit.o
-# $ ld exit.o -o exit
+# Build with build_exit.sh, in this same directory.
 #
 # Exits with a status code that can be seen with $?
 
@@ -21,7 +21,8 @@ _start:
 # 60 is the system call number (linux kernel command number) for exit.
 # It needs to go in rax, because that's where syscall expects to find it.
 # All of the system call numbers are listed in the linux kernel at
-# arch/x86/entry/syscalls/syscall_64.tbl
+# arch/x86/entry/syscalls/syscall_64.tbl. Another useful online resource is
+# http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 movq $60, %rax
 
 # 0 is the status number we will return
