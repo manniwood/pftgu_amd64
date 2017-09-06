@@ -3,6 +3,8 @@
 #
 # From pp 81 - 87 of Programming from the Ground Up; 64 bit version
 #
+# Build with build_toupper.sh, in this same directory.
+#
 # Also, you will need to run this with two arguments,
 # so when you need to run it using gdb, do this to
 # make the arguments work:
