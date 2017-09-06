@@ -1,14 +1,9 @@
+#
 # power.s
+#
 # From pp 60-62 of Programming from the Ground Up; 64 bit version
 #
-# Compile and link like so:
-# $ as power.s -o power.o
-# $ ld power.o -o power
-#
-# By this point, the gdb debugger comes in handy.
-# Compile and link for a debugger like so:
-# $ as --gstabs power.s -o power.o
-# $ ld power.o -o power
+# Build with build_power.sh, in this same directory.
 #
 # Computes the value of 2^3 + 5^2 and puts the answer in
 # the exit status code that can be seen with $?
@@ -68,11 +63,15 @@ end_power:
   popq %rbp             # restore base pointer
   ret
 
-# registar first 6 args: rdi, rsi, rdx, rcx, r8, r9
-# register return value: rax
-
-# http://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64/
-# google search "linux amd64 c calling convention"
-
-# This is really good too:
-# http://nickdesaulniers.github.io/blog/2014/04/18/lets-write-some-x86-64/
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11

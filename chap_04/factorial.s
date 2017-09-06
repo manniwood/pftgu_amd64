@@ -1,14 +1,9 @@
+#
 # factorial.s
+#
 # From pp 66 and 67 of Programming from the Ground Up; 64 bit version
 #
-# Compile and link like so:
-# $ as factorial.s -o factorial.o
-# $ ld factorial.o -o factorial
-#
-# By this point, the gdb debugger comes in handy.
-# Compile and link for a debugger like so:
-# $ as --gstabs factorial.s -o factorial.o
-# $ ld factorial.o -o factorial
+# Build with build_factorial.sh, in this same directory.
 #
 # Computes the factorial for a given number and puts it in
 # the exit status code that can be seen with $?
@@ -68,3 +63,16 @@ end_factorial:
   leave                 # move the stack pointer back to the base
                         # pointer and pop the old base pointer into %rbp
   ret
+
+# LEGEND
+# ------
+#
+# C call:
+#   args: RDI, RSI, RDX, RCX, R8, R9
+#   return value in RAX
+#
+# Syscall:
+#   syscall number in RAX
+#   args: RDI, RSI, RDX, R10, R8, R9
+#   syscall return value in RAX
+#   destroyed registers: RCX and R11
