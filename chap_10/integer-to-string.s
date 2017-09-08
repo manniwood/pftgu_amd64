@@ -1,3 +1,8 @@
+#
+# integer-to-string.s
+#
+# From pp 205-208 of Programming from the Ground Up; 64 bit version
+#
 # %rcx will hold the count of characters processed
 # %rax will hold the current value
 # %rdi will hold the base (10)
