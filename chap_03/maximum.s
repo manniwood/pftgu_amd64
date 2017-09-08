@@ -1,7 +1,8 @@
 #
 # maximum.s
 #
-# From pp 32 and 33 of Programming from the Ground Up; 64 bit version
+# From pp 32 and 33 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_maximum.sh, in this same directory.
 #

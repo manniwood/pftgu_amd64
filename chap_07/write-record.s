@@ -1,7 +1,8 @@
 #
 # write-record.s
 #
-# From p 99 of Programming from the Ground Up; 64 bit version
+# From p 99 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .include "record-def.s"
 .include "linux.s"

@@ -1,7 +1,8 @@
 #
 # record-def.s
 #
-# From p 96 of Programming from the Ground Up; 64 bit version
+# From p 96 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .equ RECORD_FIRSTNAME, 0
 .equ RECORD_LASTNAME, 40

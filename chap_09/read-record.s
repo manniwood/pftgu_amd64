@@ -1,7 +1,8 @@
 #
 # read-record.s
 #
-# From pp 97,98 of Programming from the Ground Up; 64 bit version
+# From pp 97,98 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 # 
 # Should be compiled and linked with write-records.s
 

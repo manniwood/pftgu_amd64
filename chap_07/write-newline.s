@@ -1,7 +1,8 @@
 #
 # write-newline.s
 #
-# From p 107 of Programming from the Ground Up; 64 bit version
+# From p 107 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .include "linux.s"
 .globl write_newline

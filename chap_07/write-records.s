@@ -1,7 +1,8 @@
 #
 # write-records.s
 #
-# From pp 100-103 of Programming from the Ground Up; 64 bit version
+# From pp 100-103 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_write_records.sh, in this same directory.
 #

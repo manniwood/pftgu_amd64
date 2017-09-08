@@ -1,7 +1,8 @@
 #
 # linux.s
 #
-# From pp 96,97 of Programming from the Ground Up; 64 bit version
+# From pp 96,97 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 # system call numbers
 .equ SYS_READ, 0

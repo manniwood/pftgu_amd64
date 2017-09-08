@@ -1,7 +1,8 @@
 #
 # exit.s
 #
-# From page 20 of Programming from the Ground Up; 64 bit version
+# From page 20 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_exit.sh, in this same directory.
 #

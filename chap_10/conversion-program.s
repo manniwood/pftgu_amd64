@@ -1,7 +1,8 @@
 #
 # conversion-program.s
 #
-# From pp 208-210 of Programming from the Ground Up; 64 bit version
+# From pp 208-210 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_conversion_program.sh, in this same directory.
 

@@ -1,7 +1,8 @@
 #
 # read-records.s
 #
-# From pp 108-110 of Programming from the Ground Up; 64 bit version
+# From pp 108-110 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_read_records.sh, in this same directory.
 

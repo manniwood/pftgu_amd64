@@ -1,7 +1,8 @@
 #
 # add-year.s
 #
-# From pp 111 - 113 of Programming from the Ground Up; 64 bit version
+# From pp 111 - 113 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_add_year.sh, in this same directory.
 

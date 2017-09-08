@@ -1,7 +1,8 @@
 #
 # count-chars.s
 #
-# From pp 105-106 of Programming from the Ground Up; 64 bit version
+# From pp 105-106 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .section .text
 .type count_chars, @function

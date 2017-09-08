@@ -1,7 +1,8 @@
 #
 # error-exit.s
 #
-# From pp 123,124 of Programming from the Ground Up; 64 bit version
+# From pp 123,124 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .include "linux.s"
 

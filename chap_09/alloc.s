@@ -1,7 +1,8 @@
 #
 # alloc.s
 #
-# From pp 157-165 of Programming from the Ground Up; 64 bit version
+# From pp 157-165 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 
 .section .data
 

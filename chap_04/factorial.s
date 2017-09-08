@@ -1,7 +1,8 @@
 #
 # factorial.s
 #
-# From pp 66 and 67 of Programming from the Ground Up; 64 bit version
+# From pp 66 and 67 of Programming from the Ground Up, by Jonathan Bartlett
+# but translated to amd64
 #
 # Build with build_factorial.sh, in this same directory.
 #
